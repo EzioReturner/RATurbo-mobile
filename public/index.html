@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#000000" />
+  <title>%SITE_NAME%</title>
+  <script type="text/javascript">
+    window.pageConfig = {
+      serverTime: '{{ serverTime }}',
+      _csrf: '{{ctx.csrf | safe}}',
+      staticPath: '{{ staticPath }}'
+    };
+  </script>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to
+    run this app.</noscript>
+  <div id="root"></div>
+  <script>
+    // (function(win, doc) {
+    //     var UA = navigator.userAgent,
+    //         isAndroid = /android|adr/gi.test(UA),
+    //         isIos = /iphone|ipod|ipad/gi.test(UA) && !isAndroid;
+    //     var docEl = doc.documentElement;
+    //     var refreshRem = function() {
+    //             var w = docEl.getBoundingClientRect().width || 375;
+    //             var fontSize = w / 375 * 20;
+    //             fontSize = fontSize > 60 ? 60 : fontSize; //限制最大宽度960
+    //             docEl.style.fontSize = fontSize + 'px';
+    //             var finalFontSize = parseFloat(win.getComputedStyle(docEl).getPropertyValue("font-size"));
+    //             if (finalFontSize === fontSize) return;
+    //             fontSize = fontSize + (fontSize - finalFontSize);
+    //             docEl.style.fontSize = fontSize + 'px';
+    //             win.fontSize = fontSize;
+    //         },
+    //         refreshRemId;
+    //     win.addEventListener('resize', function() {
+    //         clearTimeout(refreshRemId);
+    //         refreshRemId = setTimeout(refreshRem, 100);
+    //     }, false);
+    //     win.addEventListener('pageshow', function(e) {
+    //         if (e.persisted) {
+    //             clearTimeout(refreshRemId);
+    //             refreshRemId = setTimeout(refreshRem, 100);
+    //         }
+    //     }, false);
+    //     refreshRem();
+    // })(window, document);
+  </script> 
+</body>
+
+</html>

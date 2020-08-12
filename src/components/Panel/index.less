@@ -1,0 +1,37 @@
+.RAPanel {
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--body-background);
+  display: flex;
+  flex-direction: column;
+
+  .RAPanel-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    min-height: 50px;
+    background-color: @white-color;
+    color: @color-darken;
+    flex-shrink: 0;
+
+    .RAPanel-title-text {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .RAPanel-title-icon {
+      position: absolute;
+      left: 4px;
+      font-size: 14px;
+      padding: @spacing-small;
+      color: @color-darken;
+    }
+  }
+
+  .RAPanel-body {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+  }
+}

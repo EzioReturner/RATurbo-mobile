@@ -1,0 +1,28 @@
+.pull-to-refresh {
+  overflow: auto;
+  position: relative;
+  transform: translate3d(0, 0, 0);
+
+  .pull-to-refresh-transition {
+    transition: transform 0.3s;
+    transform-origin: left top 0;
+  }
+
+  .pull-to-refresh-text {
+    color: grey;
+    text-align: center;
+    height: 25px;
+    margin-top: -6.6vw;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .pull-to-refresh-icon {
+    color: @primary-color;
+    transition: opacity 0.2s;
+    margin-right: @spacing-small;
+    font-weight: bold;
+    font-size: 16px;
+  }
+}

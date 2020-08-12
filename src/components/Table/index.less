@@ -1,0 +1,126 @@
+.RATable {
+  display: flex;
+  flex-flow: column nowrap;
+  overflow: hidden;
+  height: 100%;
+  flex: 1;
+
+  .RATable-wrapper {
+    flex: 1;
+    position: relative;
+  }
+
+  .RATable-body {
+    display: flex;
+    flex-flow: row nowrap;
+    padding-bottom: @spacing-small;
+
+    .RATable-row.RATable-header {
+      background-color: #f2f3f6 !important;
+      color: @color-darken !important;
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+
+      .header-sort {
+        margin-left: @spacing-mini;
+      }
+
+      .header-sort-inner {
+        height: 12px;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        transform: translateY(-2px);
+      }
+
+      .headr-sort-icon {
+        font-size: 8px;
+        height: 5px;
+        color: @color-lighten;
+
+        &.active {
+          color: @color-darken;
+        }
+      }
+    }
+
+    .RATable-body-content {
+      display: flex;
+      flex-flow: row nowrap;
+      overflow: auto;
+      min-width: 100%;
+
+      &.fixed {
+        overflow: hidden;
+      }
+
+      .RATable-col {
+        width: auto;
+        border-right: 1px solid @white-color;
+        position: relative;
+        flex: 1;
+
+        &:last-child {
+          border-right: 0;
+        }
+      }
+
+      .RATable-row {
+        height: 28px;
+        line-height: 28px;
+        font-size: 10px;
+        padding: 0 16px;
+        white-space: nowrap;
+        color: @color-darken;
+        font-weight: 400;
+
+        // .row-text {
+        //   transform: scale(0.9);
+        // }
+
+        &:nth-child(even) {
+          background-color: #fcfcfc;
+        }
+
+        &:nth-child(odd) {
+          background-color: #f2f3f6;
+        }
+      }
+    }
+
+    .RATable-fixed-container {
+      display: flex;
+      flex-flow: row nowrap;
+
+      .RATable-col:last-child {
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: -1px;
+          width: 30px;
+          transform: translateX(100%);
+          transition: -webkit-box-shadow 0.3s;
+          transition: box-shadow 0.3s;
+          transition: box-shadow 0.3s, -webkit-box-shadow 0.3s;
+          content: '';
+          pointer-events: none;
+          box-shadow: inset 10px 0 8px -8px rgba(0, 0, 0, 0.15);
+          z-index: 1;
+        }
+      }
+    }
+
+    .RATable-scroll-container {
+      display: flex;
+      flex-flow: row nowrap;
+      overflow: auto;
+      flex: 1;
+    }
+  }
+}
+
+.RATable-pagination {
+  margin-top: 10px;
+}
