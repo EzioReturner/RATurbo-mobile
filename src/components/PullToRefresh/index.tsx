@@ -63,8 +63,13 @@ const PullToRefresh = forwardRef<any, PullToRefreshProps>((props, ref) => {
     const touchstart = (event: any) => {
       if (pullRef.current?.scrollTop !== 0 || disabled) {
         lockPullRefresh = true;
+        return;
       } else {
         lockPullRefresh = false;
+      }
+
+      if (transitionRef.current) {
+        transitionRef.current.style.transition = 'none';
       }
 
       const touchs = event.targetTouches[0];
@@ -124,8 +129,12 @@ const PullToRefresh = forwardRef<any, PullToRefreshProps>((props, ref) => {
     };
 
     const touchend = () => {
-      startScreenY = 0;
+      if (lockPullRefresh) return;
 
+      startScreenY = 0;
+      if (transitionRef.current) {
+        transitionRef.current.style.transition = 'transform 0.3s';
+      }
       if (readyToRefresh) {
         onRefresh && onRefresh();
         if (refresh === undefined) {

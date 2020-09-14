@@ -6,6 +6,7 @@ import './drawer.less';
 interface RADrawerProps {
   open: boolean;
   openChange: (open: boolean) => void;
+  direction?: 'up' | 'left' | 'down' | 'right';
   wrapperStyle?: React.CSSProperties;
   maskStyle?: React.CSSProperties;
   drawerStyle?: React.CSSProperties;
@@ -13,10 +14,28 @@ interface RADrawerProps {
 }
 
 const RADrawer: React.FC<RADrawerProps> = props => {
-  const { open, children, openChange, wrapperStyle, maskStyle, drawerStyle, wrapperClose } = props;
+  const {
+    open,
+    children,
+    openChange,
+    wrapperStyle,
+    maskStyle,
+    drawerStyle,
+    wrapperClose,
+    direction
+  } = props;
+
+  let _direction = direction || 'up';
 
   return ReactDOM.createPortal(
-    <div className={classnames('RA-drawer', open && 'RA-drawer-opened')} style={{ ...drawerStyle }}>
+    <div
+      className={classnames(
+        'RA-drawer',
+        open && 'RA-drawer-opened',
+        `RA-drawer-direction-${_direction}`
+      )}
+      style={{ ...drawerStyle }}
+    >
       <div
         className="RA-drawer-mask"
         style={{ ...maskStyle }}

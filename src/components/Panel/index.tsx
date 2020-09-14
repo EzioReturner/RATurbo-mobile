@@ -6,19 +6,32 @@ interface RAPanelProps {
   closeCallback: (data?: any) => void;
   title: React.ReactNode;
   titleExtra?: React.ReactNode;
+  panelStyle?: React.CSSProperties;
+  bodyStyle?: React.CSSProperties;
+  hideCloseIcon?: boolean;
 }
 
 const RAPanel: React.FC<RAPanelProps> = props => {
-  const { closeCallback, title, titleExtra, children } = props;
+  const {
+    closeCallback,
+    title,
+    titleExtra,
+    panelStyle,
+    bodyStyle,
+    hideCloseIcon,
+    children
+  } = props;
 
   return (
-    <div className="RAPanel">
+    <div className="RAPanel" style={{ ...panelStyle }}>
       <div className="RAPanel-title">
-        <LeftOutlined className="RAPanel-title-icon" onClick={closeCallback} />
+        {!hideCloseIcon && <LeftOutlined className="RAPanel-title-icon" onClick={closeCallback} />}
         <span className="RAPanel-title-text">{title}</span>
         {titleExtra}
       </div>
-      <div className="RAPanel-body">{children}</div>
+      <div className="RAPanel-body" style={{ ...bodyStyle }}>
+        {children}
+      </div>
     </div>
   );
 };
