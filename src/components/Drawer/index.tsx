@@ -11,7 +11,6 @@ import './drawer.less';
  * @param {wrapperStyle} 容器样式
  * @param {maskStyle} 遮罩样式
  * @param {drawerStyle} 抽屉样式
- * @param {wrapperClose} 
  */
 
 interface RADrawerProps {
@@ -21,7 +20,6 @@ interface RADrawerProps {
   wrapperStyle?: React.CSSProperties;
   maskStyle?: React.CSSProperties;
   drawerStyle?: React.CSSProperties;
-  wrapperClose?: boolean | Function;
 }
 
 const RADrawer: React.FC<RADrawerProps> = props => {
@@ -32,7 +30,6 @@ const RADrawer: React.FC<RADrawerProps> = props => {
     wrapperStyle,
     maskStyle,
     drawerStyle,
-    wrapperClose,
     direction
   } = props;
 
@@ -57,13 +54,7 @@ const RADrawer: React.FC<RADrawerProps> = props => {
       <div
         className="RA-drawer-wrapper"
         style={{ ...wrapperStyle }}
-        onClick={e => {
-          if (wrapperClose && e.target === e.currentTarget) {
-            openChange(false);
-            typeof wrapperClose === 'function' && wrapperClose();
-          }
-        }}
-      >
+       >
         {children}
       </div>
     </div>,

@@ -1,13 +1,15 @@
 .RA-drawer {
   position: fixed;
-  top: 0;
-  right: 0;
   z-index: 888;
   width: 100%;
 
   &.RA-drawer-direction-up {
+    bottom: 0;
+    right: 0;
+
     .RA-drawer-wrapper {
       transform: translate3d(0, 100%, 0);
+      bottom: 0;
     }
 
     &.RA-drawer-opened .RA-drawer-wrapper {
@@ -16,8 +18,11 @@
   }
 
   &.RA-drawer-direction-left {
+    top: 0;
+    left: 0;
+
     .RA-drawer-wrapper {
-      transform: translate3d(100%, 0, 0);
+      transform: translate3d(-100%, 0, 0);
     }
 
     &.RA-drawer-opened .RA-drawer-wrapper {
@@ -26,6 +31,9 @@
   }
 
   &.RA-drawer-direction-down {
+    top: 0;
+    right: 0;
+
     .RA-drawer-wrapper {
       transform: translate3d(0, -100%, 0);
     }
@@ -36,8 +44,11 @@
   }
 
   &.RA-drawer-direction-right {
+    top: 0;
+    right: 0;
+
     .RA-drawer-wrapper {
-      transform: translate3d(-100%, 0, 0);
+      transform: translate3d(100%, 0, 0);
     }
 
     &.RA-drawer-opened .RA-drawer-wrapper {
@@ -69,7 +80,7 @@
   }
 
   .RA-drawer-wrapper {
-    min-height: 100vh;
+    // min-height: 100vh;
     position: absolute;
     right: 0;
     transition: transform 0.4s ease;
