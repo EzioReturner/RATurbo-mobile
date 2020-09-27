@@ -2,6 +2,17 @@ import React, { useRef, useEffect, useState, forwardRef, useImperativeHandle } f
 import { LoadingOutlined } from '@ant-design/icons';
 import './index.less';
 
+/**
+ * 下拉刷新组件
+ * @param {distance} 下拉触发刷新的距离
+ * @param {propsStyle} 下拉组件的样式
+ * @param {indicator} 指标信息见下方
+ * @param {refresh} 激活刷新
+ * @param {disabled} 禁用
+ * @param {render} body区域render函数
+ * @param {onRefresh} 刷新回调函数
+ */
+
 interface PullToRefreshProps {
   distance: number;
   propsStyle?: React.CSSProperties;

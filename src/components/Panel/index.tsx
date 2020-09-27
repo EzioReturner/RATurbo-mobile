@@ -2,6 +2,16 @@ import React from 'react';
 import { LeftOutlined } from '@ant-design/icons';
 import './index.less';
 
+/**
+ * 抽屉组件
+ * @param {closeCallback} 关闭回调
+ * @param {title} 标题
+ * @param {titleExtra} 标题右侧额外信息
+ * @param {panelStyle} panel样式
+ * @param {bodyStyle} 内容区域样式
+ * @param {hideCloseIcon} 隐藏关闭按钮
+ */
+
 interface RAPanelProps {
   closeCallback: (data?: any) => void;
   title: React.ReactNode;
