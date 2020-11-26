@@ -3,8 +3,7 @@ module.exports = {
   siteName: 'RATurbo-mobile',
   useMenu: true,
   useHeader: true,
-  copyright: [
-  ],
+  copyright: [],
   menuLinkUrl: '',
   iconfontUrl: '//at.alicdn.com/t/font_842049_rn496ve5nkq.js',
   layoutMode: 'split',

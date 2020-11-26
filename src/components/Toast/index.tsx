@@ -10,7 +10,6 @@ import './index.less';
  * @param {duration} 存在时间
  */
 
-
 const RAToast = (text: any, type: 'warning' | 'success', duration?: number) => {
   return Toast.info(
     <div className={`toast-info info-${type}`}>

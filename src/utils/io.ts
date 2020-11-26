@@ -40,7 +40,7 @@ class Request {
 
   // 错误notify
   notify(message: string | number) {
-    RAToast(`请求错误: ${message}`);
+    RAToast(`请求错误: ${message}`, 'warning');
   }
 
   // 错误处理
@@ -99,8 +99,7 @@ class Request {
   }
 
   post(path: string, data: IoOptions) {
-    const _path = path + '?_csrf=' + window?.pageConfig?._csrf;
-    return this.sendRequest('post', _path, data);
+    return this.sendRequest('post', path, data);
   }
 
   put(path: string, data: IoOptions) {

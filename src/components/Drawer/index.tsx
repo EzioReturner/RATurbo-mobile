@@ -23,15 +23,7 @@ interface RADrawerProps {
 }
 
 const RADrawer: React.FC<RADrawerProps> = props => {
-  const {
-    open,
-    children,
-    openChange,
-    wrapperStyle,
-    maskStyle,
-    drawerStyle,
-    direction
-  } = props;
+  const { open, children, openChange, wrapperStyle, maskStyle, drawerStyle, direction } = props;
 
   let _direction = direction || 'up';
 
@@ -51,10 +43,7 @@ const RADrawer: React.FC<RADrawerProps> = props => {
           openChange(false);
         }}
       ></div>
-      <div
-        className="RA-drawer-wrapper"
-        style={{ ...wrapperStyle }}
-       >
+      <div className="RA-drawer-wrapper" style={{ ...wrapperStyle }}>
         {children}
       </div>
     </div>,
