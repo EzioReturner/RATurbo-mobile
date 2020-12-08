@@ -1,17 +1,7 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import classnames from 'classnames';
 import ReactDOM from 'react-dom';
 import './drawer.less';
-
-/**
- * 抽屉组件
- * @param {open} 开启抽屉
- * @param {openChange} 调整开启函数
- * @param {direction} 抽屉出现方向
- * @param {wrapperStyle} 容器样式
- * @param {maskStyle} 遮罩样式
- * @param {drawerStyle} 抽屉样式
- */
 
 interface RADrawerProps {
   open: boolean;
@@ -20,6 +10,7 @@ interface RADrawerProps {
   wrapperStyle?: React.CSSProperties;
   maskStyle?: React.CSSProperties;
   drawerStyle?: React.CSSProperties;
+  wrapperClose?: boolean | Function;
 }
 
 const RADrawer: React.FC<RADrawerProps> = props => {
@@ -30,36 +21,62 @@ const RADrawer: React.FC<RADrawerProps> = props => {
     wrapperStyle,
     maskStyle,
     drawerStyle,
+    wrapperClose,
     direction
   } = props;
 
+  const drawerRef = useRef<HTMLDivElement>(null);
+
   let _direction = direction || 'up';
 
-  return ReactDOM.createPortal(
-    <div
-      className={classnames(
-        'RA-drawer',
-        open && 'RA-drawer-opened',
-        `RA-drawer-direction-${_direction}`
-      )}
-      style={{ ...drawerStyle }}
-    >
-      <div
-        className="RA-drawer-mask"
-        style={{ ...maskStyle }}
-        onClick={() => {
-          openChange(false);
-        }}
-      ></div>
-      <div
-        className="RA-drawer-wrapper"
-        style={{ ...wrapperStyle }}
-       >
-        {children}
-      </div>
-    </div>,
-    document.getElementsByTagName('body')[0]
-  );
-};
+  useEffect(() => {
+    setTimeout(() => {
+      if (drawerRef.current) {
+        if (open) {
+          drawerRef.current.className = drawerRef.current.className + ' RA-drawer-opened';
+        } else {
+          drawerRef.current.className = drawerRef.current.className.replace('RA-drawer-opened', '');
+        }
+      }
+    }, 10);
+  }, [open]);
 
+  let portal = null;
+
+  if (drawerRef.current || open) {
+    portal = ReactDOM.createPortal(
+      <div
+        className={classnames(
+          'RA-drawer',
+          // open && 'RA-drawer-opened',
+          `RA-drawer-direction-${_direction}`
+        )}
+        style={{ ...drawerStyle }}
+        ref={drawerRef}
+      >
+        <div
+          className="RA-drawer-mask"
+          style={{ ...maskStyle }}
+          onClick={() => {
+            openChange(false);
+          }}
+        ></div>
+        <div
+          className="RA-drawer-wrapper"
+          style={{ ...wrapperStyle }}
+          onClick={e => {
+            if (wrapperClose && e.target === e.currentTarget) {
+              openChange(false);
+              typeof wrapperClose === 'function' && wrapperClose();
+            }
+          }}
+        >
+          {children}
+        </div>
+      </div>,
+      document.getElementsByTagName('body')[0]
+    );
+  }
+  return portal;
+};
 export default RADrawer;
