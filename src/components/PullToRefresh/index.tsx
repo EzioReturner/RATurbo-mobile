@@ -2,17 +2,6 @@ import React, { useRef, useEffect, useState, forwardRef, useImperativeHandle } f
 import { LoadingOutlined } from '@ant-design/icons';
 import './index.less';
 
-/**
- * 下拉刷新组件
- * @param {distance} 下拉触发刷新的距离
- * @param {propsStyle} 下拉组件的样式
- * @param {indicator} 指标信息见下方
- * @param {refresh} 激活刷新
- * @param {disabled} 禁用
- * @param {render} body区域render函数
- * @param {onRefresh} 刷新回调函数
- */
-
 interface PullToRefreshProps {
   distance: number;
   propsStyle?: React.CSSProperties;
@@ -45,9 +34,9 @@ const PullToRefresh = forwardRef<any, PullToRefreshProps>((props, ref) => {
 
   const [indicator, setIndicator] = useState<StoreKeyValue>({
     deactivate: prop_indicator?.deactivate || '下拉可以刷新',
-    release: prop_indicator?.active || <LoadingOutlined className="pull-to-refresh-icon" />,
+    release: prop_indicator?.release || <LoadingOutlined className="pull-to-refresh-icon" />,
     finish: prop_indicator?.finish || '完成刷新',
-    active: prop_indicator?.release || '松开立即刷新'
+    active: prop_indicator?.active || '松开立即刷新'
   });
 
   const [status, setStauts] = useState<Status>('deactivate');
@@ -119,7 +108,7 @@ const PullToRefresh = forwardRef<any, PullToRefreshProps>((props, ref) => {
         return;
       }
 
-      if (t_screenY < startScreenY || lockPullRefresh) {
+      if (t_screenY < startScreenY || lockPullRefresh || startScreenY === 0) {
         return;
       }
 
@@ -202,6 +191,7 @@ const PullToRefresh = forwardRef<any, PullToRefreshProps>((props, ref) => {
 
   return (
     <section className="pull-to-refresh" ref={pullRef} style={{ ...propsStyle }}>
+      <div id="translateY"></div>
       <div className="pull-to-refresh-transition" ref={transitionRef}>
         <div className="pull-to-refresh-text">{indicator[status]}</div>
         {render()}
